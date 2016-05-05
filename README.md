@@ -1,17 +1,24 @@
 README for Ansible 3 client demo:
 =================================
 
-
-Demo consists of 4 CentOS 7 Vagrant VMs.  Tested on Fedora 23
+Demo consists of 4 CentOS 7 Vagrant VMs.  Tested on Fedora 23 and vagrant-libvirt.
+If there's demand VirtualBox boxes can be added.
 
 Passwords for both root and vagrant user are "vagrant"
 
-Clone the Git repo to ~/vagrant and it should create 4 subdirs
+**First:** Add the Ansible server and client boxes to vagrant:
+
+vagrant box add centos-7-client:vagrant-libvirt 
+vagrant box add centos-7-server-ansible:vagrant-libvirt
+
+**Next:** Clone the Git repo to ~/vagrant and it should create 4 subdirs
 
 - ans
 - client1
 - client2
 - client3
+
+**Start the Demo:**
 
 cd to ans and run ./ansibleup.sh
 
