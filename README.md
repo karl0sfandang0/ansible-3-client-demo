@@ -2,6 +2,7 @@ README for Ansible 3 client demo:
 =================================
 
 Demo consists of 4 CentOS 7 Vagrant VMs.  Tested on Fedora 23 and vagrant-libvirt.
+
 If there's demand VirtualBox boxes can be added.
 
 Passwords for both root and vagrant user are "vagrant"
