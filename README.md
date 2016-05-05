@@ -9,8 +9,10 @@ Passwords for both root and vagrant user are "vagrant"
 
 **First:** Add the Ansible server and client boxes to vagrant:
 
-vagrant box add centos-7-client:vagrant-libvirt 
-vagrant box add centos-7-server-ansible:vagrant-libvirt
+vagrant box add centos-7-client:vagrant-libvirt _[URL Path to be added]_
+
+vagrant box add centos-7-server-ansible:vagrant-libvirt _[URL Path to be added]_
+
 
 **Next:** Clone the Git repo to ~/vagrant and it should create 4 subdirs
 
