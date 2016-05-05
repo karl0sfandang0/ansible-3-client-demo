@@ -1,6 +1,9 @@
 README for Ansible 3 client demo:
 =================================
 
+5th May 2016 - Note: Demo still in development.  I want to replace the boxes with some lighter
+weight ones.
+
 Demo consists of 4 CentOS 7 Vagrant VMs.  Tested on Fedora 23 and vagrant-libvirt.
 
 If there's demand VirtualBox boxes can be added.

@@ -3,7 +3,7 @@
 # Script to start up my 4 ansible demo VMs with Vagrant
 #
 
-ANSHOME=${HOME}/vagrant/ans
+ANSHOME=${HOME}/vagrant/ansible-3-client-demo
 
 cd ${ANSHOME}
 /usr/bin/vagrant up
