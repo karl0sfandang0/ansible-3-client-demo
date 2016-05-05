@@ -30,16 +30,19 @@ and enter the password for the vagrant user of "vagrant"..
 then it spits out a list of the IPs of the Client machines.
 
 Copy the IPs to the clipboard and ssh to the Ansible VM using vagrant ssh 
-in the ans folder.  Then past the client IPs to the /etc/ansible/hosts file.
+in the ans folder.  Then past the client IPs to the end of the
+\etc/ansible/hosts file.
 
-Do it like this to how how ansible can operate on subsets, or "groups"
+Do it like this to show how ansible can operate on subsets, or "groups"
 (IPs here are examples.. use your own):
 
 [web]
+
 192.168.121.30
 192.168.121.46
 
 [db]
+
 192.168.121.47
 
 No need to ssh-copy-id to clients as the clients' Vagrantfile takes care
@@ -47,23 +50,23 @@ of that
 
 Test it's working with:
 
-ansible all -m ping
+$ ansible all -m ping
 
 Proceed to show other Ansible ad-hoc commands such as using the command module:
 
-ansible db -a "/usr/bin/hostname"
+$ ansible db -a "/usr/bin/hostname"
 
 Privilege escalation:
 
-ansible web -a "/usr/bin/whoami"
+$ ansible web -a "/usr/bin/whoami"
 
 ..followed by: 
 
-ansible web -a "/usr/bin/whoami" -b
+$ ansible web -a "/usr/bin/whoami" -b
 
 Gathering facts:
 
-ansible karl_db -m setup
+$ ansible db -m setup
 
 .. And any other points of discussion you might want to address.
 
@@ -75,7 +78,7 @@ http://192.168.121.80
 
 Also run:
 
-ansible web -a "systemctl status httpd"
+$ ansible web -a "systemctl status httpd"
 
 192.168.121.80 | FAILED | rc=3 >>
 ● httpd.service
@@ -89,15 +92,15 @@ ansible web -a "systemctl status httpd"
 
 Then run the demo playbook:
 
-ansible-playbook /home/vagrant/demo_playbook.yml
+$ ansible-playbook /home/vagrant/demo_playbook.yml
 
 After it completes run the tests again.
 
-At the end of the demo, in the ans folder, run:
+At the end of the demo, exit back to your laptop host and in the ans folder, run:
 
-./ansibledown.sh
+$ ./ansibledown.sh
 
-That will shut it all down
+That will shut it all down.
 
 
 
