@@ -44,7 +44,7 @@ ANSIP=`vagrant ssh -c "ip -4 a sh dev eth0" | grep inet | cut -d "/" -f 1 | awk 
 /bin/echo "vagrant" > ${ANSHOME}/vagrantpass
 sshpass -f ${ANSHOME}/vagrantpass /usr/bin/ssh-copy-id -o StrictHostKeyChecking=no vagrant@${ANSIP}
 scp ${ANSHOME}/playbooks/demo_playbook.yml vagrant@${ANSIP}:
-/bin/rm/${ANSHOME}/vagrantpass
+/bin/rm${ANSHOME}/vagrantpass
 #
 /bin/echo "** Here is the list of Client IPs **"
 cat ${ANSHOME}/vm_ips.out

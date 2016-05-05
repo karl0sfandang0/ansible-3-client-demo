@@ -12,10 +12,9 @@ Passwords for both root and vagrant user are "vagrant"
 
 **First:** Add the Ansible server and client boxes to vagrant:
 
-vagrant box add centos-7-client:vagrant-libvirt _[URL Path to be added]_
+vagrant box add centos-7-client:vagrant-libvirt https://dl.dropboxusercontent.com/u/32750278/boxes/centos-7-server-ansible%3Avagrant-libvirt.box
 
-vagrant box add centos-7-server-ansible:vagrant-libvirt _[URL Path to be added]_
-
+vagrant box add centos-7-server-ansible:vagrant-libvirt https://dl.fedoraproject.org/pub/alt/purpleidea/vagrant/centos-7.2/centos-7.2.box
 
 **Next:** Clone the Git repo to ~/vagrant and it should create 4 subdirs
 
