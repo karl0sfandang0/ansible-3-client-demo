@@ -1,9 +1,6 @@
 README for Ansible 3 client demo:
 =================================
 
-5th May 2016 - Note: Demo still in development.  I want to replace the boxes with some lighter
-weight ones.
-
 Demo consists of 4 CentOS 7 Vagrant VMs.  Tested on Fedora 23 and vagrant-libvirt.
 
 If there's demand VirtualBox boxes can be added.
@@ -15,6 +12,8 @@ Passwords for both root and vagrant user are "vagrant"
 vagrant box add centos-7-client:vagrant-libvirt https://dl.dropboxusercontent.com/u/32750278/boxes/centos-7-server-ansible%3Avagrant-libvirt.box
 
 vagrant box add centos-7-server-ansible:vagrant-libvirt https://dl.fedoraproject.org/pub/alt/purpleidea/vagrant/centos-7.2/centos-7.2.box
+
+_**Note:** These boxes are fairly heavyweight and could be replaced with lighter.._
 
 **Next:** Clone the Git repo to ~/vagrant and it should create 4 subdirs
 
