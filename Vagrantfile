@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos-7-server-ansible:vagrant-libvirt"
+  config.vm.box = "centos-7-server-anstower:vagrant-libvirt"
   config.vm.synced_folder '.', '/vagrant', :disabled => true
 
   # Disable automatic box update checking. If you disable this, then
@@ -56,7 +56,7 @@ Vagrant.configure(2) do |config|
   # information on available options.
 
  config.vm.provider :libvirt do |domain|
-    domain.memory = 1024
+    domain.memory = 4096
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies

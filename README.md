@@ -6,34 +6,36 @@ Demo consists of 4 CentOS 7 Vagrant VMs.  Tested on Fedora 23 and vagrant-libvir
 If there's demand VirtualBox boxes can be added.
 
 Passwords for both root and vagrant user are "vagrant"
+Ansible Tower login is admin / vagrant
 
-**First:** Add the Ansible server and client boxes to vagrant:
+**First:** Add the Ansible server and client boxes to vagrant: 
 
-vagrant box add centos-7-client:vagrant-libvirt https://dl.dropboxusercontent.com/u/32750278/boxes/centos-7-server-ansible%3Avagrant-libvirt.box
+vagrant box add centos-7-server-anstower:vagrant-libvirt https://www.dropbox.com/s/o4l9ehniyoyz4ql/centos-7-server-anstower%3Avagrant-libvirt.box?dl=0
 
-vagrant box add centos-7-server-ansible:vagrant-libvirt https://dl.fedoraproject.org/pub/alt/purpleidea/vagrant/centos-7.2/centos-7.2.box
+vagrant box add centos-7-client:vagrant-libvirt https://dl.fedoraproject.org/pub/alt/purpleidea/vagrant/centos-7.2/centos-7.2.box
+
 
 _**Note:** These boxes are fairly heavyweight and could be replaced with lighter.._
 
 **Next:** Clone the Git repo to ~/vagrant and it should create 4 subdirs
 
-- ans
+- ansible-3-client-demo
 - client1
 - client2
 - client3
 
 **Start the Demo:**
 
-cd to ans and run ./ansibleup.sh
+cd to ansible-3-client-demoans and run ./ansibleup.sh
 
-This starts all 4 VMs in serial, copies a demo playbook to the ansible
+This starts all 4 VMs in serial, and copies a demo playbook to the ansible
 server (it still requires you to answer the yes prompt if you've got
 StrictHostChecking enabled in your /etc/ssh/ssh_config) so do that,
 and enter the password for the vagrant user of "vagrant"..
 then it spits out a list of the IPs of the Client machines.
 
 Copy the IPs to the clipboard and ssh to the Ansible VM using vagrant ssh 
-in the ans folder.  Then past the client IPs to the end of the
+in the ans folder.  Then paste the client IPs to the end of the
 \etc/ansible/hosts file.
 
 Do it like this to show how ansible can operate on subsets, or "groups"
@@ -98,6 +100,31 @@ Then run the demo playbook:
 $ ansible-playbook /home/vagrant/demo_playbook.yml
 
 After it completes run the tests again.
+
+**The demo environment also has Tower installed:**
+
+You can hit the UI on the IP of the Ansible server vm.  Login: admin / vagrant
+Then you just need to paste your license key in and start using Tower if you want to 
+demo that.
+
+Eg:  To show Tower I can:
+
+- First stop the webservers by running:
+
+$ ansible web -a "systemctl status httpd"
+
+- Go to URL and show stopped; then go to Tower
+
+- Login as admin
+- Set up credentials for root user on a machine - asking for password
+- Setup credentials for my github acccount
+- Setup an inventory of 2 webservers in group web (to match the playbook)
+	-Create the group 1st then click on it and then add hosts
+- Create a project and point it at my github demo
+- Create a job template - if the playbook's not there the 1st time, go back to the project and 
+check for green symbol i.e. auth OK.  Then go back.  May take a few secs..
+- Launch the job template (Playbook)
+- Watch it complete
 
 At the end of the demo, exit back to your laptop host and in the ans folder, run:
 
