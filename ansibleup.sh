@@ -42,7 +42,22 @@ fi
 ANSIP=`vagrant ssh -c "ip -4 a sh dev eth0" | grep inet | cut -d "/" -f 1 | awk '{ print $2 }'`
 
 /bin/echo "vagrant" > ${ANSHOME}/vagrantpass
+#
+# Check you have an ssh public key before trying to copy it
+#
+
+ls ~/.ssh/id_rsa.pub
+
+if [[ $? != 0 ]]; then
+  /bin/echo " ** You need to have a default-named RSA public key created **"
+  /bin/echo " ** Run ssh-keygen and accept the default to create ~/.ssh/id_rsa.pub **"
+  /bin/echo " ** and then re-run this script ** "
+  ${ANSHOME}/ansibledown.sh
+ exit 0
+fi
+
 sshpass -f ${ANSHOME}/vagrantpass /usr/bin/ssh-copy-id -o StrictHostKeyChecking=no vagrant@${ANSIP}
+
 scp ${ANSHOME}/playbooks/demo_playbook.yml vagrant@${ANSIP}:
 /bin/rm ${ANSHOME}/vagrantpass
 #
