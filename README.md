@@ -10,9 +10,15 @@ Ansible Tower login is admin / vagrant
 
 **First:** Add the Ansible server and client boxes to vagrant: 
 
-vagrant box add centos-7-server-anstower:vagrant-libvirt https://www.dropbox.com/s/o4l9ehniyoyz4ql/centos-7-server-anstower%3Avagrant-libvirt.box?dl=0
+Download the Server Box from:
 
-vagrant box add centos-7-client:vagrant-libvirt https://dl.fedoraproject.org/pub/alt/purpleidea/vagrant/centos-7.2/centos-7.2.box
+https://www.dropbox.com/s/o4l9ehniyoyz4ql/centos-7-server-anstower%3Avagrant-libvirt.box?dl=0
+
+$ vagrant box add centos-7-server-anstower:vagrant-libvirt /<path_to>/centos-7-server-anstower:vagrant-libvirt.box
+
+Either download client box first, or add directly from the URL:
+
+$ vagrant box add centos-7-client:vagrant-libvirt https://dl.fedoraproject.org/pub/alt/purpleidea/vagrant/centos-7.2/centos-7.2.box
 
 
 _**Note:** These boxes are fairly heavyweight and could be replaced with lighter.._
@@ -26,7 +32,9 @@ _**Note:** These boxes are fairly heavyweight and could be replaced with lighter
 
 **Start the Demo:**
 
-cd to ansible-3-client-demoans and run ./ansibleup.sh
+$ cd ~/vagrant/ansible-3-client-demos 
+
+$ ./ansibleup.sh
 
 This starts all 4 VMs in serial, and copies a demo playbook to the ansible
 server (it still requires you to answer the yes prompt if you've got
