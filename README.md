@@ -44,7 +44,9 @@ then it spits out a list of the IPs of the Client machines.
 
 Copy the IPs to the clipboard and ssh to the Ansible VM using vagrant ssh 
 in the ans folder.  Then paste the client IPs to the end of the
-\etc/ansible/hosts file.
+/etc/ansible/hosts file
+
+$ sudo vi /etc/ansible/hosts
 
 Do it like this to show how ansible can operate on subsets, or "groups"
 (IPs here are examples.. use your own):
@@ -52,6 +54,7 @@ Do it like this to show how ansible can operate on subsets, or "groups"
 [web]
 
 192.168.121.30
+
 192.168.121.46
 
 [db]
@@ -61,7 +64,7 @@ Do it like this to show how ansible can operate on subsets, or "groups"
 No need to ssh-copy-id to clients as the clients' Vagrantfile takes care
 of that
 
-Test it's working with:
+As user ansible (not root or passwordless ssh won't work), test it's working with:
 
 $ ansible all -m ping
 
@@ -111,7 +114,7 @@ After it completes run the tests again.
 
 **The demo environment also has Tower installed:**
 
-You can hit the UI on the IP of the Ansible server vm.  Login: admin / vagrant
+You can hit the UI on the IP of the Ansible server vm.  Login: admin / redhat
 Then you just need to paste your license key in and start using Tower if you want to 
 demo that.
 
@@ -119,7 +122,7 @@ Eg:  To show Tower I can:
 
 - First stop the webservers by running:
 
-$ ansible web -a "systemctl status httpd"
+$ ansible web -a "systemctl stop httpd" -b  (-b required as needs to be root)
 
 - Go to URL and show stopped; then go to Tower
 
@@ -127,12 +130,13 @@ $ ansible web -a "systemctl status httpd"
 - Set up credentials for root user on a machine - asking for password
 - Setup credentials for my github acccount
 - Setup an inventory of 2 webservers in group web (to match the playbook)
-	-Create the group 1st then click on it and then add hosts
-- Create a project and point it at my github demo
-- Create a job template - if the playbook's not there the 1st time, go back to the project and 
-check for green symbol i.e. auth OK.  Then go back.  May take a few secs..
-- Launch the job template (Playbook)
+	- Create the inventory first, then within that
+	- Create group "web" 1st then click on it and then add hosts
+- Create a project and point it at my github demo - Wait for solid green status
+- Create a job template, selecting the playbook
+- Launch the job template clicking the rocket - enter VM root password of vagrant
 - Watch it complete
+- Check back pointing browser at IP of one of the webservers
 
 At the end of the demo, exit back to your laptop host and in the ans folder, run:
 
