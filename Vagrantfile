@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos-7-server-ansible:vagrant-libvirt"
+  config.vm.box = "centos-7-server-ansible3:vagrant-libvirt"
   config.ssh.insert_key = false
 
   # Disable automatic box update checking. If you disable this, then
@@ -39,7 +39,7 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder '.', '/vagrant', :disabled => true
+    config.vm.synced_folder '.', '/vagrant', :disabled => true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -52,9 +52,11 @@ Vagrant.configure(2) do |config|
   #   # Customize the amount of memory on the VM:
   #   vb.memory = "1024"
   # end
-    config.vm.provider :libvirt do |domain|
-   	 domain.memory = 4096
-    end
+
+     config.vm.provider :libvirt do |domain|
+       domain.memory = 4096
+     end
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
