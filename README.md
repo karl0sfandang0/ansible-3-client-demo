@@ -30,6 +30,19 @@ _**Note:** These boxes are fairly heavyweight and could be replaced with lighter
 - client2
 - client3
 
+**Consider adding the following to ~/.ssh/config to prevent Vagrant IPs going into known_hosts.  That'll prevent an issue connecting if a previously used IP is reused:**
+
+\#Stop Vagrant IPs getting added to known_hosts
+
+Host 192.168.121.*
+
+  StrictHostKeyChecking no
+
+  UserKnownHostsFile /dev/null
+
+  LogLevel QUIET
+
+
 **Start the Demo:**
 
 $ cd ~/vagrant/ansible-3-client-demos 
@@ -90,7 +103,9 @@ Then you can demo using a playbook to setup / remediate two webservers. First
 point a browser at one of the webservers IP address to prove there's nothing
 running e.g:
 
-http://192.168.121.80
+ansible web -a "/usr/sbin/ip -4 a sh dev eth0"
+
+http://\<IP>
 
 Also run:
 
@@ -108,7 +123,7 @@ $ ansible web -a "systemctl status httpd"
 
 Then run the demo playbook:
 
-$ ansible-playbook /home/vagrant/demo_playbook.yml
+$ ansible-playbook demo_playbook.yml
 
 After it completes run the tests again.
 
@@ -122,7 +137,7 @@ Eg:  To show Tower I can:
 
 - First stop the webservers by running:
 
-$ ansible web -a "systemctl stop httpd" -b  (-b required as needs to be root)
+$   (-b required as needs to be root)
 
 - Go to URL and show stopped; then go to Tower
 
